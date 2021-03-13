@@ -15,9 +15,15 @@ Check forecast with your location
 * Android studio (4.0.1)
 * Xcode (11.3)
 
+# Run the app
+### run `npm install`
+### run `cd ios; pod install`
+### run `react-native run-[the platfrom you want to run in e.g ios/android]`
+### or simply use `npm run ios / android`
+
 # Potential error
 ## Error: Unable to resolve module `./YellowBoxImageSource` from `node_modules/react-native/Libraries/YellowBox/UI/YellowBoxInspectorHeader.js`
 
-### Solution
+## Solution
 run: `react-native start reset-cache`
 after that run the project `react-native run-ios / npm run ios`
