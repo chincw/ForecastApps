@@ -16,10 +16,10 @@ Check forecast with your location
 * Xcode (11.3)
 
 # Run the app
-### run `npm install`
-### run `cd ios; pod install`
-### run `react-native run-[the platfrom you want to run in e.g ios/android]`
-### or simply use `npm run ios / android`
+* run `npm install`
+* run `cd ios; pod install`
+* run `react-native run-[the platfrom you want to run in e.g ios/android]`
+* or simply use `npm run ios / android`
 
 # Potential error
 ## Error: Unable to resolve module `./YellowBoxImageSource` from `node_modules/react-native/Libraries/YellowBox/UI/YellowBoxInspectorHeader.js`
