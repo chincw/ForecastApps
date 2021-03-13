@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/WeatherApps.iml" filepath="$PROJECT_DIR$/.idea/modules/WeatherApps.iml" group="WeatherApps" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/app.iml" group="WeatherApps/app" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/490146888/react-native-async-storage_async-storage.iml" filepath="$PROJECT_DIR$/.idea/modules/490146888/react-native-async-storage_async-storage.iml" group="WeatherApps/react-native-async-storage_async-storage" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/509154564/react-native-community_masked-view.iml" filepath="$PROJECT_DIR$/.idea/modules/509154564/react-native-community_masked-view.iml" group="WeatherApps/react-native-community_masked-view" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/698636539/react-native-geolocation-service.iml" filepath="$PROJECT_DIR$/.idea/modules/698636539/react-native-geolocation-service.iml" group="WeatherApps/react-native-geolocation-service" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/1652198483/react-native-gesture-handler.iml" filepath="$PROJECT_DIR$/.idea/modules/1652198483/react-native-gesture-handler.iml" group="WeatherApps/react-native-gesture-handler" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-2101188119/react-native-reanimated.iml" filepath="$PROJECT_DIR$/.idea/modules/-2101188119/react-native-reanimated.iml" group="WeatherApps/react-native-reanimated" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-723788804/react-native-safe-area-context.iml" filepath="$PROJECT_DIR$/.idea/modules/-723788804/react-native-safe-area-context.iml" group="WeatherApps/react-native-safe-area-context" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-645256123/react-native-system-setting.iml" filepath="$PROJECT_DIR$/.idea/modules/-645256123/react-native-system-setting.iml" group="WeatherApps/react-native-system-setting" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/2085102691/react-native-vector-icons.iml" filepath="$PROJECT_DIR$/.idea/modules/2085102691/react-native-vector-icons.iml" group="WeatherApps/react-native-vector-icons" />
+    </modules>
+  </component>
+</project>
