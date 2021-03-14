@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, FlatList, ActivityIndicator, StyleSheet, Platform } from 'react-native';
+import { View, Text, FlatList, ActivityIndicator, StyleSheet, Platform, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
 import { Header, Card, Space } from '@element';
 import { THEME } from '@stylesheet/styles';
@@ -8,7 +8,6 @@ import Geolocation from 'react-native-geolocation-service';
 import moment from 'moment';
 import Icon from 'react-native-vector-icons/Feather';
 import { locationPermission, checkLocationPermission } from '../commonFunction/GetPermission';
-import SystemSetting from 'react-native-system-setting';
 
 const isArrayEmpty = data => !data || data.length === 0;
 
@@ -17,6 +16,8 @@ const LoadingInd = () => (
     <ActivityIndicator size="large" color="#39D2D4" />
   </View>
 );
+
+const TODAY = moment().format('DD MMM YYYY');
 
 class MainScreen extends Component {
   constructor(props) {
@@ -85,31 +86,34 @@ class MainScreen extends Component {
   renderList = ({ item, index }) => {
     const { temp, weather, dt } = item || {};
     const dateTime = new Date(dt * 1000);
+    const formatted = moment(dateTime).format('DD MMM YYYY');
 
-    return (
-      <View key={index}>
-        <Card onPress={this.navigate({ date: item.dt, lat: this.state.lat, long: this.state.long })}>
-          <View style={THEME.rowContainer}>
-            <View style={[THEME.flex1, THEME.justifyCenter]}>
-              <Icon name="cloud" size={50} color="#000000" />
+    if (!moment(formatted).isSame(TODAY)) {
+      return (
+        <View key={index}>
+          <Card onPress={this.navigate({ date: item.dt, lat: this.state.lat, long: this.state.long })}>
+            <View style={THEME.rowContainer}>
+              <View style={[THEME.flex1, THEME.justifyCenter]}>
+                <Icon name="cloud" size={50} color="#000000" />
+              </View>
+              <View style={THEME.flex3}>
+                <Text style={[THEME.fontBold, THEME.fontXlarge]}>{temp.day + ' ºC'}</Text>
+                {!isArrayEmpty(weather) &&
+                  weather.map((dataItem, dataIndex) => (
+                    <View key={dataIndex}>
+                      <Text style={[THEME.fontThin, THEME.small]}>{dataItem.description}</Text>
+                    </View>
+                  ))}
+                <Text>{`${moment(dateTime).format('MMM DD')}`}</Text>
+              </View>
+              <View style={[THEME.flex1, THEME.flexEnd, THEME.justifyCenter]}>
+                <Icon name="arrow-right-circle" size={25} color="#000000" />
+              </View>
             </View>
-            <View style={THEME.flex3}>
-              <Text style={[THEME.fontBold, THEME.fontXlarge]}>{temp.day + ' ºC'}</Text>
-              {!isArrayEmpty(weather) &&
-                weather.map((dataItem, dataIndex) => (
-                  <View key={dataIndex}>
-                    <Text style={[THEME.fontThin, THEME.small]}>{dataItem.description}</Text>
-                  </View>
-                ))}
-              <Text>{`${moment(dateTime).format('MMM DD')}`}</Text>
-            </View>
-            <View style={[THEME.flex1, THEME.flexEnd, THEME.justifyCenter]}>
-              <Icon name="arrow-right-circle" size={25} color="#000000" />
-            </View>
-          </View>
-        </Card>
-      </View>
-    );
+          </Card>
+        </View>
+      );
+    }
   };
 
   render() {
@@ -120,38 +124,46 @@ class MainScreen extends Component {
         <Header title="Forecast App" />
         {isFetching && <LoadingInd />}
         {!isArrayEmpty(currentWeatherData) && (
-          <Card>
-            <View style={THEME.rowContainer}>
-              <View style={[THEME.flex1, THEME.justifyCenter]}>
-                <Icon name="cloud" size={50} color="#000000" />
+          <View>
+            <Text style={THEME.fontBold}>Today forecast</Text>
+            <Space value={0.5} />
+            <Card>
+              <View style={THEME.rowContainer}>
+                <View style={[THEME.flex1, THEME.justifyCenter]}>
+                  <Icon name="cloud" size={50} color="#000000" />
+                </View>
+                <View style={THEME.flex3}>
+                  <Text style={[THEME.fontBold, THEME.fontXlarge]}>{currentWeatherData.temp + ' ºC'}</Text>
+                  <Space value={1} />
+                  {!isArrayEmpty(currentWeatherData.weather) &&
+                    currentWeatherData.weather.map((item, index) => (
+                      <View key={index}>
+                        <Text style={[THEME.fontThin, THEME.small]}>{item.description}</Text>
+                      </View>
+                    ))}
+                  <Space value={0.5} />
+                  <Text>{`${moment(dateTime).format('MMM DD hh:mm')}`}</Text>
+                </View>
               </View>
-              <View style={THEME.flex3}>
-                <Text style={[THEME.fontBold, THEME.fontXlarge]}>{currentWeatherData.temp + ' ºC'}</Text>
-                <Space value={1} />
-                {!isArrayEmpty(currentWeatherData.weather) &&
-                  currentWeatherData.weather.map((item, index) => (
-                    <View key={index}>
-                      <Text style={[THEME.fontThin, THEME.small]}>{item.description}</Text>
-                    </View>
-                  ))}
-                <Space value={0.5} />
-                <Text>{`${moment(dateTime).format('MMM DD hh:mm')}`}</Text>
-              </View>
-            </View>
-          </Card>
+            </Card>
+          </View>
         )}
 
         <Space value={5} />
         {!isArrayEmpty(dailyWeatherData) && (
-          <FlatList
-            keyExtractor={this.keyExtractor}
-            renderItem={this.renderList}
-            data={dailyWeatherData}
-            ItemSeparatorComponent={this.separator}
-            ListEmptyComponent={() => {
-              return <View />;
-            }}
-          />
+          <View style={THEME.flex1}>
+            <Text style={THEME.fontBold}>This week forecast</Text>
+            <Space value={0.5} />
+            <FlatList
+              keyExtractor={this.keyExtractor}
+              renderItem={this.renderList}
+              data={dailyWeatherData}
+              ItemSeparatorComponent={this.separator}
+              ListEmptyComponent={() => {
+                return <View />;
+              }}
+            />
+          </View>
         )}
       </View>
     );

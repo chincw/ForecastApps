@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/chungwei/WeatherApps/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-zh-rCN/values-zh-rCN.xml",
+            "outputFile": "/Users/chungwei/ForecastApps/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-zh-rCN/values-zh-rCN.xml",
             "map": [
                 {
                     "source": "/Users/chungwei/.gradle/caches/transforms-2/files-2.1/ec171fb8743704f4b22f20ecd0716ddc/jetified-play-services-basement-17.0.0/res/values-zh-rCN/values.xml",

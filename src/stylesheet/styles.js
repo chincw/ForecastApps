@@ -57,6 +57,9 @@ export const THEME = StyleSheet.create({
   flexEnd: {
     alignItems: 'flex-end',
   },
+  flexGrow: {
+    flexGrow: 1,
+  },
   fontXsmall: {
     fontSize: FONT.xsmall,
   },
